@@ -35,10 +35,10 @@ public class InterfazRetail {
 	@UpdateTimestamp
 	private LocalDateTime lastUpadateDate;
 
-	@CreationTimestamp	
+	@CreationTimestamp
 	private LocalDateTime createdDate;
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="interfazRetail")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="interfazRetail")
 	private List<Pipe> pipes;
 	
 	public InterfazRetail() { }
@@ -48,5 +48,35 @@ public class InterfazRetail {
 		this.nombre = nombre;
 		this.lastUpadateDate = lastUpadateDate;
 		this.createdDate = createdDate;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public LocalDateTime getLastUpadateDate() {
+		return lastUpadateDate;
+	}
+	public void setLastUpadateDate(LocalDateTime lastUpadateDate) {
+		this.lastUpadateDate = lastUpadateDate;
+	}
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+	public List<Pipe> getPipes() {
+		return pipes;
+	}
+	public void setPipes(List<Pipe> pipes) {
+		this.pipes = pipes;
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import mx.com.geekflu.escanor.bridge.entity.CatProperty;
-import mx.com.geekflu.escanor.bridge.entity.CatTipoFuente;
+import mx.com.geekflu.escanor.bridge.entity.CatTipoConector;
 
 /**
  * Clase que dara servicio a los differentes catalogos que existen en la aplicacion
@@ -14,7 +14,7 @@ import mx.com.geekflu.escanor.bridge.entity.CatTipoFuente;
  */
 @Service
 public interface CatMantenimientoService {
-	public boolean createTipoFuente(CatTipoFuente... fuentes);
+	public boolean createTipoFuente(CatTipoConector... fuentes);
 	public void updateTipoFuente(Long id, String newDescripcion);
 	public void deleteTipoFuente(Long id);
 	

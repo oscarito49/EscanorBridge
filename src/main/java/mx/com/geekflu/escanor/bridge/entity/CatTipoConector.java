@@ -21,23 +21,23 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="cat_tipo_fuente")
-public class CatTipoFuente {
+@Table(name="cat_tipo_conector")
+public class CatTipoConector {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(nullable=false, unique=true)
-	private String fuente;
-	public CatTipoFuente() { }
-	public CatTipoFuente(Long id, String fuente) {
+	private String conector;
+	public CatTipoConector() { }
+	public CatTipoConector(Long id, String conectorS) {
 		super();
 		this.id = id;
-		this.fuente = fuente;
+		this.conector = conector;
 	}
-	public CatTipoFuente(String fuente) {
+	public CatTipoConector(String conector) {
 		super();
-		this.fuente = fuente;
+		this.conector = conector;
 	}
 	public Long getId() {
 		return id;
@@ -45,14 +45,14 @@ public class CatTipoFuente {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getFuente() {
-		return fuente;
+	public String getConector() {
+		return conector;
 	}
-	public void setFuente(String fuente) {
-		this.fuente = fuente;
+	public void setConector(String conector) {
+		this.conector = conector;
 	}
 	@Override
 	public String toString() {
-		return "CatTipoFuente [id=" + id + ", fuente=" + fuente + "]";
+		return "CatTipoFuente [id=" + id + ", fuente=" + conector + "]";
 	}
 }

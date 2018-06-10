@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import mx.com.geekflu.escanor.bridge.entity.CatAccion;
+import mx.com.geekflu.escanor.bridge.entity.CatEstatus;
 import mx.com.geekflu.escanor.bridge.entity.CatProperty;
-import mx.com.geekflu.escanor.bridge.entity.CatTipoFuente;
+import mx.com.geekflu.escanor.bridge.entity.CatTipoConector;
+import mx.com.geekflu.escanor.bridge.repository.CatAccionRepository;
+import mx.com.geekflu.escanor.bridge.repository.CatEstatusRepository;
 import mx.com.geekflu.escanor.bridge.repository.CatPropertyRepository;
 import mx.com.geekflu.escanor.bridge.repository.CatTipoFuenteRepository;
 
@@ -26,10 +30,16 @@ public class CatMantenimientoServiceImpl implements CatMantenimientoService {
 	@Autowired
 	private CatTipoFuenteRepository catTipoFuenteDao;
 	
+	@Autowired
+	private CatAccionRepository catAccionDao;
+	
+	@Autowired
+	private CatEstatusRepository catEstatusDao;
+	
 	@Override
-	public boolean createTipoFuente(CatTipoFuente... fuentes) {
+	public boolean createTipoFuente(CatTipoConector... fuentes) {
 		boolean isOk = true;
-		for(CatTipoFuente fuente : fuentes) {
+		for(CatTipoConector fuente : fuentes) {
 			catTipoFuenteDao.save(fuente);
 		}
 		return isOk;
@@ -37,8 +47,8 @@ public class CatMantenimientoServiceImpl implements CatMantenimientoService {
 
 	@Override
 	public void updateTipoFuente(Long id, String newDescripcion) {
-		CatTipoFuente f = catTipoFuenteDao.getOne(id);
-		f.setFuente(newDescripcion);
+		CatTipoConector f = catTipoFuenteDao.getOne(id);
+		f.setConector(newDescripcion);
 	}
 
 	@Override
@@ -58,7 +68,7 @@ public class CatMantenimientoServiceImpl implements CatMantenimientoService {
 
 	@Override
 	public void deleteTipoFuente(Long id) {
-		CatTipoFuente f = catTipoFuenteDao.getOne(id);
+		CatTipoConector f = catTipoFuenteDao.getOne(id);
 		catTipoFuenteDao.delete(f);
 	}
 
@@ -72,11 +82,17 @@ public class CatMantenimientoServiceImpl implements CatMantenimientoService {
 	public <T> List<T> getCatalogo(Class<T> theClazz) {
 		List<T> lst = null;
 		if(theClazz.getSimpleName() != null &&
-				theClazz.getSimpleName().equals(CatTipoFuente.class.getSimpleName())) {
+				theClazz.getSimpleName().equals(CatTipoConector.class.getSimpleName())) {
 			lst = (List<T>) catTipoFuenteDao.findAll();
 		}else if(theClazz.getSimpleName() != null &&
 				theClazz.getSimpleName().equals(CatProperty.class.getSimpleName())) {
 			lst = (List<T>) catPropertyDao.findAll();
+		}else if(theClazz.getSimpleName() != null &&
+				theClazz.getSimpleName().equals(CatAccion.class.getSimpleName())) {
+			lst = (List<T>) catAccionDao.findAll();
+		}else if(theClazz.getSimpleName() != null &&
+				theClazz.getSimpleName().equals(CatEstatus.class.getSimpleName())) {
+			lst = (List<T>) catEstatusDao.findAll();
 		}
 		return lst;
 	}

@@ -27,8 +27,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="property")
-public class Property {
+@Table(name="detalle_property")
+public class DetalleProperty {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -42,9 +42,10 @@ public class Property {
 	private String valor;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_pipe")
 	private Pipe pipe;
-	public Property() { }
-	public Property(Long id, CatProperty property, String valor, Pipe pipe) {
+	public DetalleProperty() { }
+	public DetalleProperty(Long id, CatProperty property, String valor, Pipe pipe) {
 		super();
 		this.id = id;
 		this.property = property;
@@ -74,9 +75,5 @@ public class Property {
 	}
 	public void setPipe(Pipe pipe) {
 		this.pipe = pipe;
-	}
-	@Override
-	public String toString() {
-		return "Property [id=" + id + ", property=" + property + ", valor=" + valor + ", pipe=" + pipe + "]";
 	}
 }
