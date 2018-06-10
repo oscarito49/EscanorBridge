@@ -78,9 +78,10 @@ public class InterfazRetailServiceImpl implements InterfazRetailService {
 			irObj.setPipes(pipeDao.findByInterfazRetailId(irObj.getId()));
 			if (irObj.getPipes() != null && 
 					!irObj.getPipes().isEmpty()) {
-				for (Pipe pi : irObj.getPipes()) {
-					pi.setPropiedades(detallePropertyDao.findDetallePropertyByIdPipe(pi.getId()));
-				}
+				
+				irObj.getPipes().stream()
+				.forEach(pipe -> pipe.setPropiedades(detallePropertyDao.findDetallePropertyByIdPipe(pipe.getId())));
+				
 			}
 			return irObj;
 		} else {
