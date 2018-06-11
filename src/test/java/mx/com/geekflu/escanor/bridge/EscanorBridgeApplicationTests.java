@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import mx.com.geekflu.escanor.bridge.entity.CatAccion;
@@ -70,6 +71,12 @@ public class EscanorBridgeApplicationTests {
 		assertEquals("InterFaz dummy", interFromDB.getNombre());
 		assertEquals(ir.getId(), interFromDB.getId());
 		
+	}
+	
+	@Test(expected=DataRetrievalFailureException.class)
+	public void test_validate_interfaaz_retail_not_found_byId() {
+		logger.info("Interfaz Retail NOT FOUND Exception");
+		InterfazRetail interFromDB = interfazRetailService.findInterfazRetail(-9999L);
 	}
 
 }
