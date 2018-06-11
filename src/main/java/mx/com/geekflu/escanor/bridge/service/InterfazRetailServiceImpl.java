@@ -49,16 +49,14 @@ public class InterfazRetailServiceImpl implements InterfazRetailService {
 		return iSaved;
 	}
 
+	/**
+	 * Al final del metodo la transaccion automaticamente mandara los cambios a la base de datos
+	 */
 	@Override
 	public void updateInterfazRetail(InterfazRetail interfaz) {
-		Optional<InterfazRetail> ir = interfazDao.findById(interfaz.getId());
-		if (ir.isPresent()) {
-			InterfazRetail i = ir.get();
-			i.setNombre(interfaz.getNombre());
-			i.setPipes(interfaz.getPipes());
-		} else {
-			throw new DataRetrievalFailureException("La Interfaz Retail no fue encontrada: " + interfaz.getNombre());
-		}
+		InterfazRetail ir = findInterfazRetail(interfaz.getId());
+		ir.setNombre(interfaz.getNombre());
+		ir.setPipes(interfaz.getPipes());
 	}
 
 	@Override

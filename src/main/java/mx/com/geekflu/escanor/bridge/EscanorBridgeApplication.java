@@ -57,40 +57,6 @@ public class EscanorBridgeApplication implements CommandLineRunner {
 		
 		catMantenimientoService.updateProperty(cat.get(0).getId(), "MyaSS Fuckers property");
 		logger.info("Propiedades --> {}", catMantenimientoService.getCatalogo(CatProperty.class));
-		
-		
-		
-		InterfazRetail ir = new  InterfazRetail();
-		List<CatAccion> acciones = catMantenimientoService.getCatalogo(CatAccion.class);
-		List<CatTipoConector> tipos = catMantenimientoService.getCatalogo(CatTipoConector.class);
-		List<CatEstatus> estatus = catMantenimientoService.getCatalogo(CatEstatus.class);
-		List<CatProperty> catProperty = catMantenimientoService.getCatalogo(CatProperty.class);
-
-		DetalleProperty propiedad = new DetalleProperty();
-		propiedad.setProperty(catProperty.get(0));
-		propiedad.setValor("sftp.url.mx");
-		
-		DetalleProperty propiedad1 = new DetalleProperty();
-		propiedad1.setProperty(catProperty.get(1));
-		propiedad1.setValor("useer1234");
-		
-		DetalleProperty propiedad2 = new DetalleProperty();
-		propiedad2.setProperty(catProperty.get(2));
-		propiedad2.setValor("passsword123");
-		
-		Pipe pp1 = new Pipe();
-		pp1.setAccion(acciones.get(1));
-		pp1.setEstatus(estatus.get(1));
-		pp1.setNombre("FTP Extractor");
-		pp1.setNumero(0);
-		pp1.setTipo(tipos.get(0));
-		pp1.setPropiedades(Arrays.asList(propiedad, propiedad1, propiedad2));
-		
-		ir.setNombre("InterFaz dummy");
-		ir.setPipes(Arrays.asList(pp1));
-		ir = interfazRetailService.createInterfazRetail(ir);
-		
-		logger.info("interfaz creted {}", interfazRetailService.findInterfazRetail(ir.getId()));
 
 	}
 }

@@ -1,5 +1,7 @@
 package mx.com.geekflu.escanor.bridge;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,20 +54,22 @@ public class EscanorBridgeApplicationTests {
 		propiedad2.setProperty(catProperty.get(2));
 		propiedad2.setValor("passsword123");
 		
-		Pipe p1 = new Pipe();
-		p1.setAccion(acciones.get(1));
-		p1.setEstatus(estatus.get(1));
-		p1.setNombre("FTP Extractor");
-		p1.setNumero(0);
-		p1.setTipo(tipos.get(0));
-		p1.setPropiedades(Arrays.asList(propiedad, propiedad1, propiedad2));
+		Pipe pp1 = new Pipe();
+		pp1.setAccion(acciones.get(1));
+		pp1.setEstatus(estatus.get(1));
+		pp1.setNombre("FTP Extractor");
+		pp1.setNumero(0);
+		pp1.setTipo(tipos.get(0));
+		pp1.setPropiedades(Arrays.asList(propiedad, propiedad1, propiedad2));
 		
 		ir.setNombre("InterFaz dummy");
-		ir.setPipes(Arrays.asList(p1));
+		ir.setPipes(Arrays.asList(pp1));
 		ir = interfazRetailService.createInterfazRetail(ir);
 		
-		logger.info("interfaz creted {}", interfazRetailService.findInterfazRetail(ir.getId()));
+		InterfazRetail interFromDB = interfazRetailService.findInterfazRetail(ir.getId());
+		assertEquals("InterFaz dummy", interFromDB.getNombre());
+		assertEquals(ir.getId(), interFromDB.getId());
+		
 	}
-	
 
 }
